@@ -67,6 +67,24 @@ model DefenderForStorageSettingList {
 }
 
 /**
+ * A collection of retained malware scans.
+ */
+model MalwareScanList {
+  /**
+   * The malware scans in this page.
+   */
+  @pageItems
+  @visibility(Lifecycle.Read)
+  value: MalwareScan[];
+
+  /**
+   * The URI to fetch the next page.
+   */
+  @nextLink
+  nextLink?: url;
+}
+
+/**
  * Defender for Storage resource properties.
  */
 #suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "These API versions use a synchronous settings PUT and do not expose provisioningState. Feature enablement results are reported by malwareScanning.operationStatus and sensitiveDataDiscovery.operationStatus."

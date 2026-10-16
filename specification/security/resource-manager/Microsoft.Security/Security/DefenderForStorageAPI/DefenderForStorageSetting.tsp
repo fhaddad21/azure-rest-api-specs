@@ -203,6 +203,18 @@ interface DefenderForStorageSettings {
     MalwareScan,
     ErrorType = CloudError
   >;
+
+  /**
+   * Lists the retained Defender for Storage malware scans for the specified storage resource.
+   */
+  @tag("DefenderForStorage")
+  @tag("Antimalware")
+  @tag("Scan")
+  listMalwareScans is DefenderForStorageMalwareScansOps.List<
+    MalwareScan,
+    Response = ArmResponse<MalwareScanList>,
+    ErrorType = CloudError
+  >;
 }
 
 @@doc(
