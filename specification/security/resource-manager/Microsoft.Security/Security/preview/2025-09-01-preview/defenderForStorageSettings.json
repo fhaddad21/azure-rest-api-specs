@@ -205,6 +205,60 @@
         }
       }
     },
+    "/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{settingName}/malwareScans": {
+      "get": {
+        "operationId": "DefenderForStorage_ListMalwareScans",
+        "tags": [
+          "DefenderForStorage",
+          "Antimalware",
+          "Scan"
+        ],
+        "description": "Lists the retained Defender for Storage malware scans for the specified storage resource.",
+        "parameters": [
+          {
+            "$ref": "../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "name": "resourceId",
+            "in": "path",
+            "description": "The fully qualified Azure Resource manager identifier of the resource.",
+            "required": true,
+            "type": "string",
+            "x-ms-skip-url-encoding": true
+          },
+          {
+            "name": "settingName",
+            "in": "path",
+            "description": "The Defender for Storage setting name. Only 'current' is supported.",
+            "required": true,
+            "type": "string",
+            "pattern": "^current$"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Azure operation completed successfully.",
+            "schema": {
+              "$ref": "#/definitions/MalwareScanList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Common.CloudError"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Lists the retained Defender for Storage malware scans for the specified storage resource.": {
+            "$ref": "./examples/DefenderForStorage/ListMalwareScans_example.json"
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
     "/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{settingName}/malwareScans/{scanId}": {
       "get": {
         "operationId": "DefenderForStorage_GetMalwareScan",
@@ -573,6 +627,28 @@
         {
           "$ref": "../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource"
         }
+      ]
+    },
+    "MalwareScanList": {
+      "type": "object",
+      "description": "A collection of retained malware scans.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "description": "The malware scans in this page.",
+          "items": {
+            "$ref": "#/definitions/MalwareScan"
+          },
+          "readOnly": true
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URI to fetch the next page."
+        }
+      },
+      "required": [
+        "value"
       ]
     },
     "MalwareScanProperties": {

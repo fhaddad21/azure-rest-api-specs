@@ -27,3 +27,7 @@ using Common;
   DefenderForStorageSettings.getMalwareScan,
   "DefenderForStorage"
 );
+@@clientLocation(
+  DefenderForStorageSettings.listMalwareScans,
+  "DefenderForStorage"
+);
